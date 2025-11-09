@@ -1,0 +1,248 @@
+{
+	"info": {
+		"_postman_id": "7ee1353d-d74b-45c4-a9cd-73853640bbc7",
+		"name": "TallerPruebas",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37533867"
+	},
+	"item": [
+		{
+			"name": "Get Primeros10",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/museums",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"museums"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Segunda pag",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/museums?page=2&limit=10",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"museums"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "2"
+						},
+						{
+							"key": "limit",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Todos en una pag",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/museums?limit=20",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"museums"
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "20"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Filtro Nombre Oro",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/museums?name=oro",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"museums"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "oro"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Filtro Ciudad Bogotá",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/museums?city=Bogotá",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"museums"
+					],
+					"query": [
+						{
+							"key": "city",
+							"value": "Bogotá"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Filtro Fecha",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/museums?foundedBefore=1900",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"museums"
+					],
+					"query": [
+						{
+							"key": "foundedBefore",
+							"value": "1900"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Todos los filtros",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/museums?name=oro&city=Bogotá&foundedBefore=2000&page=1&limit=5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"museums"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "oro"
+						},
+						{
+							"key": "city",
+							"value": "Bogotá"
+						},
+						{
+							"key": "foundedBefore",
+							"value": "2000"
+						},
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "limit",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FiltroCiudadypaginas",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/museums?city=Medellín&page=2&limit=3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"museums"
+					],
+					"query": [
+						{
+							"key": "city",
+							"value": "Medellín"
+						},
+						{
+							"key": "page",
+							"value": "2"
+						},
+						{
+							"key": "limit",
+							"value": "3"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

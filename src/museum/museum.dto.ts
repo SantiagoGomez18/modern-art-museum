@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import {IsNotEmpty, IsString, IsUrl} from 'class-validator';
+import {IsInt, IsNotEmpty, IsString, IsUrl, Min} from 'class-validator';
 export class MuseumDto {
 
  @IsString()
@@ -21,5 +21,10 @@ export class MuseumDto {
  @IsUrl()
  @IsNotEmpty()
  readonly image: string;
+
+@IsInt()
+@Min(1000) 
+@IsNotEmpty()
+readonly foundedBefore: number;
 }
 /* archivo: src/museum/museum.dto.ts */

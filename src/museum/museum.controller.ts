@@ -5,6 +5,7 @@ import { BusinessErrorsInterceptor } from '../shared/interceptors/interceptors.i
 import { MuseumDto } from './museum.dto';
 import { MuseumEntity } from './museum.entity/museum.entity';
 import { MuseumService } from './museum.service';
+import { Query } from '@nestjs/common';
 
 @Controller('museums')
 @UseInterceptors(BusinessErrorsInterceptor)
@@ -12,8 +13,15 @@ export class MuseumController {
     constructor(private readonly museumService: MuseumService) {}
 
   @Get()
-  async findAll() {
-    return await this.museumService.findAll();
+  async findAll(
+    @Query('city') city?: string,
+    @Query('name') name?: string,
+    @Query('foundedBefore') foundedBefore?: string,
+    @Query('page') page?: string,
+    @Query('limit') limit?: string,
+  ) {
+
+    return await this.museumService.findAll({ city, name, foundedBefore: foundedBefore, page, limit });
   }
 
   @Get(':museumId')

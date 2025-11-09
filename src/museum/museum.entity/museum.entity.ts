@@ -10,6 +10,9 @@ export class MuseumEntity {
    id: string;
 
    @Column()
+   foundedBefore: number;
+
+   @Column()
    name: string;
    @Column()
    description: string;

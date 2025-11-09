@@ -5,6 +5,14 @@ import { MuseumEntity } from './museum.entity/museum.entity';
 import { BusinessError } from '../shared/errors/business-errors';
 import { BusinessLogicException } from '../shared/errors/business-errors';
 
+type filtros = {
+  city?: string;
+  name?: string;
+  foundedBefore?: string;
+  page?: string;
+  limit?: string;
+};
+
 @Injectable()
 export class MuseumService {
   constructor(
@@ -12,10 +20,36 @@ export class MuseumService {
     private readonly museumRepository: Repository<MuseumEntity>,
   ) {}
 
-  async findAll(): Promise<MuseumEntity[]> {
-    return await this.museumRepository.find({
-      relations: ['artworks', 'exhibitions'],
-    });
+  async findAll(filters: filtros): Promise<MuseumEntity[]> {
+    const city = filters.city;
+    const name = filters.name;
+    const foundedBefore =
+      filters.foundedBefore && !Number.isNaN(Number(filters.foundedBefore))
+        ? Number(filters.foundedBefore)
+        : undefined;
+    const numPages = Math.max(1, Number(filters.page) || 1);
+    const limit = Math.max(1, Number(filters.limit) || 10);
+
+    const queryBuilder = this.museumRepository.createQueryBuilder('museum');
+    if (city) {
+      queryBuilder.andWhere('LOWER(museum.city) LIKE LOWER(:city)', { city: `%${city}%` });
+    }
+
+    if (name) {
+      queryBuilder.andWhere('LOWER(museum.name) LIKE LOWER(:name)', { name: `%${name}%` });
+    }
+
+    if (foundedBefore) {
+      queryBuilder.andWhere('museum.foundedBefore < :foundedBefore', {
+        foundedBefore,
+      });
+    }
+
+    const skip = (numPages - 1) * limit;
+    queryBuilder.skip(skip).take(limit);
+
+    const data = await queryBuilder.getMany();
+    return data;
   }
 
   async findOne(id: string): Promise<MuseumEntity> {

@@ -34,8 +34,10 @@ describe('MuseumService', () => {
         description: faker.lorem.sentence(), 
         address: faker.location.streetAddress(), 
         city: faker.location.city(), 
-        image: faker.image.url()})
-        museumsList.push(museum);
+        image: faker.image.url(),
+        foundedBefore: faker.number.int({ min: 1800, max: 2020 })
+      });
+      museumsList.push(museum);
     }
   }
     
@@ -73,7 +75,8 @@ describe('MuseumService', () => {
       city: faker.location.city(), 
       image: faker.image.url(),
       exhibitions: [],
-      artworks: []
+      artworks: [],
+      foundedBefore: faker.number.int({ min: 1800, max: 2020 })
     }
 
     const newMuseum: MuseumEntity = await service.create(museum);

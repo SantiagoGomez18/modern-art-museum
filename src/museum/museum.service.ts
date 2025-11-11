@@ -20,15 +20,15 @@ export class MuseumService {
     private readonly museumRepository: Repository<MuseumEntity>,
   ) {}
 
-  async findAll(filters: filtros): Promise<MuseumEntity[]> {
-    const city = filters.city;
-    const name = filters.name;
+  async findAll(filters?: filtros): Promise<MuseumEntity[]> {
+    const city = filters?.city;
+    const name = filters?.name;
     const foundedBefore =
-      filters.foundedBefore && !Number.isNaN(Number(filters.foundedBefore))
+      filters?.foundedBefore && !Number.isNaN(Number(filters.foundedBefore))
         ? Number(filters.foundedBefore)
         : undefined;
-    const numPages = Math.max(1, Number(filters.page) || 1);
-    const limit = Math.max(1, Number(filters.limit) || 10);
+    const numPages = Math.max(1, Number(filters?.page) || 1);
+    const limit = Math.max(1, Number(filters?.limit) || 10);
 
     const queryBuilder = this.museumRepository.createQueryBuilder('museum');
     if (city) {

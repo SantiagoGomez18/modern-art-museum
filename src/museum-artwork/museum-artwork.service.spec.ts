@@ -51,7 +51,8 @@ describe('MuseumArtworkService', () => {
       address: faker.location.streetAddress(), 
       city: faker.location.city(),
       image: faker.image.url(),
-      artworks: artworksList
+      artworks: artworksList,
+      foundedBefore: faker.number.int({ min: 1800, max: 2020 })
     })
   }
 
@@ -73,7 +74,8 @@ describe('MuseumArtworkService', () => {
       description: faker.lorem.sentence(), 
       address: faker.location.streetAddress(), 
       city: faker.location.city(), 
-      image: faker.image.url()
+      image: faker.image.url(),
+      foundedBefore: faker.number.int({ min: 1800, max: 2020 })
     })
 
     const result: MuseumEntity = await service.addArtworkMuseum(newMuseum.id, newArtwork.id);
@@ -93,7 +95,8 @@ describe('MuseumArtworkService', () => {
       description: faker.lorem.sentence(), 
       address: faker.location.streetAddress(), 
       city: faker.location.city(), 
-      image: faker.image.url()
+      image: faker.image.url(),
+      foundedBefore: faker.number.int({ min: 1800, max: 2020 })
     })
 
     await expect(() => service.addArtworkMuseum(newMuseum.id, "0")).rejects.toHaveProperty("message", "The artwork with the given id was not found");
